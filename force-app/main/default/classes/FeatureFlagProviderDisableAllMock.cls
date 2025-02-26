@@ -1,4 +1,5 @@
-public with sharing class FeatureFlagProviderMock implements IFeatureFlagProvider {
+
+public with sharing class FeatureFlagProviderDisableAllMock implements IFeatureFlagProvider {
     
     public Set<String> getCustomPermissionNames(){
         Set<String> customPermissionNames = new Set<String>();
@@ -22,7 +23,7 @@ public with sharing class FeatureFlagProviderMock implements IFeatureFlagProvide
     public Map<String,Object> getAutomationControlFieldValues(){
         Map<String,Object> flags = new Map<String,Object>();
 
-        flags.put('DisableAllAutomations__c', false);
+        flags.put('DisableAllAutomations__c', true);
         flags.put('DisableFeature1__c', true);
         flags.put('EnabledFeature2__c', false);
         return flags;

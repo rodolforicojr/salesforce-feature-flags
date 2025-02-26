@@ -13,4 +13,8 @@ public with sharing class FeatureFlagProvider implements IFeatureFlagProvider {
         return FeatureFlag__mdt.getAll();
     }
 
+    public Map<String,Object> getAutomationControlFieldValues(){
+        return AutomationControl__c.getInstance().getPopulatedFieldsAsMap();
+    }
+
 }

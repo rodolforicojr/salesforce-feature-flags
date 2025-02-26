@@ -1,5 +1,53 @@
 @IsTest
 private class FeatureFlagsTests {
+    
+    @IsTest
+    static void testFeatureDisableAllAutomationsCustomSettings() {
+
+        FeatureFlagProviderDisableAllMock mockFlags = new FeatureFlagProviderDisableAllMock();
+        FeatureFlags flags = new FeatureFlags(mockFlags);
+
+        Test.startTest();
+        FeatureFlags.FeatureEvaluationResult result = flags.evaluate('DisableAllAutomations');
+        Test.stopTest();
+
+        System.debug(result);
+
+        System.assertEquals(true, result.isEnabled());
+        System.assertEquals('DisableAllAutomations', result.getFeatureName());
+        System.assertEquals(FeatureFlags.FeatureReason.ALL_AUTOMATIONS_DISABLED, result.getReason());
+    }
+
+    @IsTest
+    static void testFeatureDisabledWithCustomSettings() {
+
+        FeatureFlagProviderMock mockFlags = new FeatureFlagProviderMock();
+        FeatureFlags flags = new FeatureFlags(mockFlags);
+
+        Test.startTest();
+        FeatureFlags.FeatureEvaluationResult result = flags.evaluate('DisableFeature1');
+        Test.stopTest();
+
+        System.assertEquals(false, result.isEnabled());
+        System.assertEquals('DisableFeature1', result.getFeatureName());
+        System.assertEquals(FeatureFlags.FeatureReason.HAS_CUSTOM_SETTINGS, result.getReason());
+    }
+    
+    @IsTest
+    static void testFeatureEnabledWithCustomSettings() {
+
+        FeatureFlagProviderMock mockFlags = new FeatureFlagProviderMock();
+        FeatureFlags flags = new FeatureFlags(mockFlags);
+
+        Test.startTest();
+        FeatureFlags.FeatureEvaluationResult result = flags.evaluate('EnabledFeature2');
+        Test.stopTest();
+
+        System.assertEquals(true, result.isEnabled());
+        System.assertEquals('EnabledFeature2', result.getFeatureName());
+        System.assertEquals(FeatureFlags.FeatureReason.HAS_CUSTOM_SETTINGS, result.getReason());
+    }
+
     @IsTest
     static void testFeatureEnabledWithCustomMetadata() {
 
