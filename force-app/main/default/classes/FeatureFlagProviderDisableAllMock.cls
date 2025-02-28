@@ -25,7 +25,7 @@ public with sharing class FeatureFlagProviderDisableAllMock implements IFeatureF
 
         flags.put('DisableAllAutomations__c', true);
         flags.put('DisableFeature1__c', true);
-        flags.put('EnabledFeature2__c', false);
+        flags.put('DisableFeature2__c', false);
         return flags;
         
     }

@@ -28,7 +28,7 @@ private class FeatureFlagsTests {
         FeatureFlags.FeatureEvaluationResult result = flags.evaluate('DisableFeature1');
         Test.stopTest();
 
-        System.assertEquals(false, result.isEnabled());
+        System.assertEquals(true, result.isEnabled());
         System.assertEquals('DisableFeature1', result.getFeatureName());
         System.assertEquals(FeatureFlags.FeatureReason.HAS_CUSTOM_SETTINGS, result.getReason());
     }
@@ -40,11 +40,11 @@ private class FeatureFlagsTests {
         FeatureFlags flags = new FeatureFlags(mockFlags);
 
         Test.startTest();
-        FeatureFlags.FeatureEvaluationResult result = flags.evaluate('EnabledFeature2');
+        FeatureFlags.FeatureEvaluationResult result = flags.evaluate('DisableFeature2');
         Test.stopTest();
 
-        System.assertEquals(true, result.isEnabled());
-        System.assertEquals('EnabledFeature2', result.getFeatureName());
+        System.assertEquals(false, result.isEnabled());
+        System.assertEquals('DisableFeature2', result.getFeatureName());
         System.assertEquals(FeatureFlags.FeatureReason.HAS_CUSTOM_SETTINGS, result.getReason());
     }
 

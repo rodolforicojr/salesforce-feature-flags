@@ -34,10 +34,10 @@ public with sharing class FeatureFlags implements IFeatureFlags {
 
             // If the automation control is enabled, the feature is disabled
             if(automationControls.get(featureName + '__c') == true){
-                result = new FeatureEvaluationResult(false, featureName, FeatureReason.HAS_CUSTOM_SETTINGS);
+                result = new FeatureEvaluationResult(true, featureName, FeatureReason.HAS_CUSTOM_SETTINGS);
             }
             else{
-                result = new FeatureEvaluationResult(true, featureName, FeatureReason.HAS_CUSTOM_SETTINGS);
+                result = new FeatureEvaluationResult(false, featureName, FeatureReason.HAS_CUSTOM_SETTINGS);
             }
 
         } 
